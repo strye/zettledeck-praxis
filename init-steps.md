@@ -4,11 +4,32 @@ order: 20
 description: Configure diary paths, actions dashboard location, ruthless priorities file path, and comms workspace
 ---
 
+## Configuration Convention
+
+All praxis configuration is stored in `.zettledeck/zettledeck-praxis/config.json`. This file is the single source of truth for runtime paths used by diary, plan, email, comms, and related skills.
+
+After walking through each section below, write the final config file with all resolved values.
+
+### Config file format
+
+**File:** `.zettledeck/zettledeck-praxis/config.json`
+
+```json
+{
+  "diaryPath": "Praxis/diary",
+  "actionsPath": "Praxis/actions",
+  "rpPath": "Praxis/ruthless-priorities",
+  "commsPath": "Scriptorium",
+  "outlookMcp": "aws-outlook-mcp"
+}
+```
+
+---
+
 ## Diary Path
 
 **What:** The directory where your daily diary files are stored, organized by year and month.
-**File:** `skills/diary/SKILL.md`
-**Marker:** `{diary-path}`
+**Config key:** `diaryPath`
 **Default:** `Praxis/diary`
 
 ### Questions to ask the user
@@ -19,15 +40,16 @@ description: Configure diary paths, actions dashboard location, ruthless priorit
 
 ### How to apply
 
-Replace `{diary-path}` in `skills/diary/SKILL.md` and all four resource files under `skills/diary/resources/` with the user's chosen path. The diary skill uses this path to locate and create files at `{diary-path}/YYYY/MMM/YYYY-MM-DD_{Day}.md`.
+1. Write the user's choice to `diaryPath` in `.zettledeck/zettledeck-praxis/config.json`
+2. Replace `{diary-path}` in `skills/diary/SKILL.md` and all resource files under `skills/diary/resources/`
+3. Also replace in any nexus skills that share this placeholder (`skills/insight/`, `skills/reflection/`, `skills/ideas/`)
 
 ---
 
 ## Actions Dashboard Path
 
 **What:** The directory containing your task dashboard (`actions.md`) and archive (`actions-archive.md`).
-**File:** `skills/diary/resources/close.md`, `scaffolding/Praxis/actions/actions.md`
-**Marker:** `{actions-path}`
+**Config key:** `actionsPath`
 **Default:** `Praxis/actions`
 
 ### Questions to ask the user
@@ -38,15 +60,15 @@ Replace `{diary-path}` in `skills/diary/SKILL.md` and all four resource files un
 
 ### How to apply
 
-Replace `{actions-path}` in the diary close resource and actions template with the user's chosen path.
+1. Write the user's choice to `actionsPath` in `.zettledeck/zettledeck-praxis/config.json`
+2. Replace `{actions-path}` in diary, email, and insight skill files
 
 ---
 
 ## Ruthless Priorities Path
 
 **What:** The file path for your ruthless priorities tracking document.
-**File:** `skills/plan/references/rp-framework.md`, `skills/plan/SKILL.md`
-**Marker:** `{rp-path}`
+**Config key:** `rpPath`
 **Default:** `Praxis/ruthless-priorities`
 
 ### Questions to ask the user
@@ -57,15 +79,16 @@ Replace `{actions-path}` in the diary close resource and actions template with t
 
 ### How to apply
 
-Replace `{rp-path}` in plan/references/rp-framework.md and plan/SKILL.md. The full file path will be `{rp-path}/ruthless-priorities.md`.
+1. Write the user's choice to `rpPath` in `.zettledeck/zettledeck-praxis/config.json`
+2. Replace `{rp-path}` in plan, email, insight, and ideas skill files
+3. The full file path will be `{rpPath}/ruthless-priorities.md`
 
 ---
 
 ## Comms Workspace Path
 
-**What:** The directory where draft correspondence files are created and tracked. The comms skill uses file-based workspaces for iterative drafting.
-**File:** `skills/comms/SKILL.md`
-**Marker:** `{comms-path}`
+**What:** The directory where draft correspondence files are created and tracked.
+**Config key:** `commsPath`
 **Default:** `Scriptorium`
 
 ### Questions to ask the user
@@ -76,15 +99,15 @@ Replace `{rp-path}` in plan/references/rp-framework.md and plan/SKILL.md. The fu
 
 ### How to apply
 
-Replace `{comms-path}` in `skills/comms/SKILL.md`. Each draft creates a file at `{comms-path}/{slug}.md` with frontmatter tracking status, channel, and conversation history.
+1. Write the user's choice to `commsPath` in `.zettledeck/zettledeck-praxis/config.json`
+2. Replace `{comms-path}` in `skills/comms/SKILL.md`
 
 ---
 
 ## MCP Server Configuration
 
 **What:** The Outlook MCP server name used by diary and email skills.
-**Files:** `skills/diary/SKILL.md`, `skills/email/SKILL.md`
-**Marker:** `{outlook-mcp}`
+**Config key:** `outlookMcp`
 **Default:** `aws-outlook-mcp`
 
 ### Questions to ask the user
@@ -95,4 +118,6 @@ Replace `{comms-path}` in `skills/comms/SKILL.md`. Each draft creates a file at 
 
 ### How to apply
 
-Replace `{outlook-mcp}` in the diary and email SKILL.md files. If the user doesn't have Outlook MCP, the skills will still work in degraded mode — note this for them.
+1. Write the user's choice to `outlookMcp` in `.zettledeck/zettledeck-praxis/config.json`
+2. Replace `{outlook-mcp}` in the diary and email SKILL.md files (if placeholder exists)
+3. If the user doesn't have Outlook MCP, note that skills will work in degraded mode

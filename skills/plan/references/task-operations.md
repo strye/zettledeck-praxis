@@ -11,7 +11,7 @@ Operational rules for where tasks live, when they're archived, and how they conn
 | Task with no date context | Actions inbox file (configured by consuming project) |
 | Manually entered by user | Wherever the user writes it — the plugin finds it vault-wide |
 
-> **Note for integrators:** The actions inbox path and archive path are project-specific. Set `task.actions_inbox` and `task.archive_path` in your project configuration, or define them in your project's CLAUDE.md. Defaults are not assumed — the consuming project must specify these paths.
+> **Note for integrators:** The actions inbox path and archive path are configured in `.zettledeck/zettledeck-praxis/config.json` (`actionsPath` key). The archive threshold defaults to 14 days.
 
 ## Archival
 
