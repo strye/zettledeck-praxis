@@ -11,11 +11,11 @@ Operational rules for where tasks live, when they're archived, and how they conn
 | Task with no date context | Actions inbox file (configured by consuming project) |
 | Manually entered by user | Wherever the user writes it — the plugin finds it vault-wide |
 
-> **Note for integrators:** The actions inbox path and archive path are configured in `.zettledeck/zettledeck-praxis/config.json` (`actionsPath` key). The archive threshold defaults to 14 days.
+> **Note for integrators:** The actions inbox path and archive path are configured in `.zettledeck/zettledeck-praxis/config.json` (`actionsPath` key). The archive threshold is configured via `taskArchiveThreshold` (default: 14 days).
 
 ## Archival
 
-- **Threshold:** Completed (`✅`) or cancelled (`❌`) tasks older than 14 days.
+- **Threshold:** Completed (`✅`) or cancelled (`❌`) tasks older than the number of days set in `taskArchiveThreshold` (`.zettledeck/zettledeck-praxis/config.json`). Default: 14 days.
 - **Target:** Archive file configured by the consuming project (see note above).
 - **Format:** Tasks grouped under `## {YYYY-MM-DD} Archive` headers, newest first.
 - **Process:** Always recommend-first. The assistant identifies candidates, presents them, and waits for user approval before moving anything.

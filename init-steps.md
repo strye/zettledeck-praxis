@@ -18,9 +18,10 @@ After walking through each section below, write the final config file with all r
 {
   "diaryPath": "Praxis/diary",
   "actionsPath": "Praxis/actions",
+  "taskArchiveThreshold": 14,
   "rpPath": "Praxis/ruthless-priorities",
   "commsPath": "Scriptorium",
-  "outlookMcp": "aws-outlook-mcp"
+  "outlookMcp": "outlook-mcp"
 }
 ```
 
@@ -62,6 +63,24 @@ After walking through each section below, write the final config file with all r
 
 1. Write the user's choice to `actionsPath` in `.zettledeck/zettledeck-praxis/config.json`
 2. Replace `{actions-path}` in diary, email, and insight skill files
+
+---
+
+## Task Archive Threshold
+
+**What:** How many days after completion a task must be before it's moved to the archive file.
+**Config key:** `taskArchiveThreshold`
+**Default:** `14`
+
+### Questions to ask the user
+
+1. How many days after completion should tasks be archived?
+   - `14` days (default)
+   - Enter a custom number if preferred
+
+### How to apply
+
+1. Write the user's choice to `taskArchiveThreshold` in `.zettledeck/zettledeck-praxis/config.json`
 
 ---
 
