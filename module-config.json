@@ -1,0 +1,39 @@
+{
+  "documentTypes": {
+    "mergeKey": "docType",
+    "entries": [
+      {
+        "docType": "meeting",
+        "prefix": "M",
+        "description": "Meeting notes, one-time or recurring",
+        "validParents": ["scope", "focus", "project", "objective"],
+        "defaultStatus": "na",
+        "subTypes": ["customer", "team", "workshop", "training", "ideation", "loop", "admin", "personal"],
+        "placement": { "type": "flat-in-subfolder", "folder": "4_Meetings" },
+        "extraFrontmatter": ["freqType", "freq", "start", "end", "time"],
+        "source": "zettledeck-praxis"
+      }
+    ]
+  },
+  "workspaceFolders": {
+    "mergeKey": "role",
+    "preserveUserFields": ["enabled", "folder"],
+    "entries": [
+      {
+        "folder": "Praxis/",
+        "role": "praxis",
+        "description": "Operational workspace — daily planning, tasks, and priorities",
+        "source": "zettledeck-praxis",
+        "required": true,
+        "enabled": true
+      },
+      {
+        "folder": "Scriptorium/",
+        "role": "scriptorium",
+        "description": "Correspondence and shorter-form writing workspace",
+        "source": "zettledeck-praxis",
+        "enabled": true
+      }
+    ]
+  }
+}
