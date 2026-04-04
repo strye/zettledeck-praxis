@@ -76,12 +76,11 @@ Then stop — do not proceed to any workflow.
 
 **Tools needed**: Read, Write
 
-**Future MCP servers** (not yet implemented):
-- `aws-outlook-mcp` - For sending emails
-- Slack MCP server - For posting messages
-- Other channel-specific servers as needed
+**Future providers** (not yet implemented):
+- **email** provider — for sending emails → `.zettledeck/providers/{email-provider}.md`
+- **messaging** provider — for posting to Slack/Teams → `.zettledeck/providers/{messaging-provider}.md`
 
-**Note**: Currently, this skill generates drafts for manual sending. Future versions may support channel-specific sending via MCP servers.
+**Note**: Currently, this skill generates drafts for manual sending. Future versions may support channel-specific sending via providers.
 
 ---
 
@@ -286,7 +285,7 @@ All drafts follow the user's communication style:
 - Subject line matters
 - Greeting and sign-off conventions
 - Longer form acceptable
-- Future: Send via `aws-outlook-mcp` MCP server
+- Future: Send via **email** provider
 
 ### Slack
 - More casual tone
@@ -337,10 +336,10 @@ All drafts follow the user's communication style:
 
 **Channel-specific sending** (not yet implemented):
 
-When MCP servers become available, this skill may support:
-- Email sending via `aws-outlook-mcp`
-- Slack posting via Slack MCP server
-- Other channel integrations
+When providers are configured, this skill may support:
+- Email sending via the **email** provider
+- Slack posting via a **messaging** provider
+- Other channel integrations via future providers
 
 **Planned workflow**:
 1. User approves draft in `## Response`

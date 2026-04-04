@@ -68,13 +68,15 @@ This walks you through:
 
 ## MCP Dependencies
 
-The `diary` and `email` skills use MCP servers for calendar and email access:
+The `diary` and `email` skills use **providers** for calendar, email, and contacts access. Providers are configured during `/zettledeck.init` and stored in `.zettledeck/providers/`.
 
-| Server | Used by | Purpose |
-|--------|---------|---------|
-| `aws-outlook-mcp` | `diary daily`, `diary meeting-summary`, `email.*` | Outlook calendar and email |
+| Capability | Used by | Example providers |
+|------------|---------|-------------------|
+| `calendar` | `diary daily`, `diary weekly` | `aws-outlook-calendar`, `gmail-calendar` |
+| `email` | `diary meeting-summary`, `email.*` | `aws-outlook-email`, `gmail-email` |
+| `contacts` | `diary daily` | `aws-outlook-contacts`, `gmail-contacts` |
 
-These are optional — skills degrade gracefully when MCP servers are unavailable, but full functionality requires them.
+Providers are optional — skills degrade gracefully when providers are unavailable, but full functionality requires them.
 
 ---
 

@@ -21,7 +21,11 @@ After walking through each section below, write the final config file with all r
   "taskArchiveThreshold": 14,
   "rpPath": "Praxis/ruthless-priorities",
   "commsPath": "Scriptorium",
-  "outlookMcp": "outlook-mcp"
+  "providers": {
+    "calendar": "aws-outlook-calendar",
+    "email": "aws-outlook-email",
+    "contacts": "aws-outlook-contacts"
+  }
 }
 ```
 
@@ -123,20 +127,40 @@ After walking through each section below, write the final config file with all r
 
 ---
 
-## MCP Server Configuration
+## Providers
 
-**What:** The Outlook MCP server name used by diary and email skills.
-**Config key:** `outlookMcp`
-**Default:** `aws-outlook-mcp`
+**What:** External service providers for calendar, email, and contacts used by diary, email, and comms skills. Providers are instruction files in `.zettledeck/providers/` that tell skills how to interact with specific MCP servers.
+
+**Config key:** `providers`
 
 ### Questions to ask the user
 
-1. What is your Outlook MCP server name?
-   - `aws-outlook-mcp` (default — standard ZettleDeck setup)
-   - Enter your server name if different
+For each capability, scan `.zettledeck/providers/` for files with matching `capability` frontmatter and present available options:
+
+1. **Calendar provider** — Which calendar provider should diary skills use?
+   - List available providers with `capability: calendar` (e.g., `aws-outlook-calendar`, `gmail-calendar`)
+   - If only one exists, confirm it as the default
+   - If none exist, note that calendar-dependent features will run in degraded mode
+
+2. **Email provider** — Which email provider should email skills use?
+   - List available providers with `capability: email` (e.g., `aws-outlook-email`, `gmail-email`)
+   - Same selection logic as calendar
+
+3. **Contacts provider** — Which contacts provider should diary skills use for attendee lookup?
+   - List available providers with `capability: contacts` (e.g., `aws-outlook-contacts`, `gmail-contacts`)
+   - Same selection logic as calendar
 
 ### How to apply
 
-1. Write the user's choice to `outlookMcp` in `.zettledeck/zettledeck-praxis/config.json`
-2. Replace `{outlook-mcp}` in the diary and email SKILL.md files (if placeholder exists)
-3. If the user doesn't have Outlook MCP, note that skills will work in degraded mode
+1. Write selections to `providers` object in `.zettledeck/zettledeck-praxis/config.json`:
+   ```json
+   "providers": {
+     "calendar": "aws-outlook-calendar",
+     "email": "aws-outlook-email",
+     "contacts": "aws-outlook-contacts"
+   }
+   ```
+2. Replace `{calendar-provider}` in diary skill files with the selected calendar provider name
+3. Replace `{email-provider}` in diary and email skill files with the selected email provider name
+4. Replace `{contacts-provider}` in diary skill files with the selected contacts provider name
+5. If user has no providers for a capability, note which skills will run in degraded mode

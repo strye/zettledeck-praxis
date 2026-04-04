@@ -12,7 +12,7 @@ Call this mode when the user requests:
 
 ## Requirements
 
-**MCP Server**: `aws-outlook-mcp` with email search and read access
+**Providers**: **email** — email search and read → `.zettledeck/providers/{email-provider}.md`
 
 **Tools needed**: Read, Write
 
@@ -93,7 +93,7 @@ For each meeting with empty `#### Auto Summary`, search for summary emails using
 
 **Strategy A — Internal auto-summaries (Amazon Meetings Summary / Zoom)**:
 
-Use `email_search` from aws-outlook-mcp to search for email with subject:
+Using the **email** provider's search operation, search for email with subject:
 ```
 Meeting summary: {meeting subject}
 ```
@@ -135,7 +135,7 @@ When a candidate summary email is found, **read the full email** and verify that
 
 **If matching email found**:
 
-Use `email_read` from aws-outlook-mcp with `format: "markdown"` to retrieve email body.
+Using the **email** provider's read operation, retrieve the email body in markdown format.
 
 **Extract only summary content**:
 
@@ -219,7 +219,7 @@ Extract ALL action items - not just user's items.
 ### Step 8: Mark Summary Emails as Read
 
 After successfully importing summaries into the diary, mark all matched summary emails as read:
-- Use `email_read` with `markAs: "read"` for each email's `conversationId`
+- Use the **email** provider's mark-as-read operation for each matched email
 - This applies to both internal auto-summaries (Strategy A) and external organizer recaps (Strategy B)
 - Only mark emails that were actually used to populate an `#### Auto Summary` section
 - Do NOT mark emails that were found but failed date/time validation
@@ -318,7 +318,7 @@ Team planning for Q2 initiatives.
 
 ## Error Handling
 
-**If aws-outlook-mcp not available**: Inform user that MCP server must be configured.
+**If email provider not available**: Inform user that an email provider must be configured.
 
 **If diary file doesn't exist**: Invoke the `daily` mode to create it first.
 

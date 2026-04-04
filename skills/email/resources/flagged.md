@@ -6,11 +6,11 @@ Review flagged emails, assess staleness, and recommend next steps.
 
 **1. Retrieve flagged emails**
 
-Call `email_search` with query `flag:flagged` or retrieve inbox emails and filter for those with active flags. If no flagged emails, report "No flagged emails found" and stop.
+Using the **email** provider's search operation, retrieve flagged emails. If no flagged emails, report "No flagged emails found" and stop.
 
 **2. Read each flagged email**
 
-Call `email_read` for full content and thread context.
+Use the **email** provider's read operation for full content and thread context.
 
 **3. Load RPs**
 
@@ -70,5 +70,5 @@ Read `{rp-path}/ruthless-priorities.md` for RP alignment.
 
 - **Create action item:** Write to diary file per task-management rules
 - **Create waiting-for:** Write to diary file with `@person:` prefix
-- **Unflag & archive:** Call `email_update` to set flag status to `NotFlagged`, then `email_move` to archive
+- **Unflag & archive:** Use the **email** provider's update flags operation to unflag, then move operation to archive
 - **Draft reply:** Switch to Draft Response mode for that email

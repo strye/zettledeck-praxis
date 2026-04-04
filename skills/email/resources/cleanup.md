@@ -6,7 +6,7 @@ Batch archive or delete old processed emails from inbox.
 
 **1. Scan inbox**
 
-Call `email_inbox` (without `unreadOnly`) to retrieve emails. Filter for read emails.
+Using the **email** provider's list inbox operation, retrieve all emails. Filter for read emails.
 
 **2. Apply age threshold**
 
@@ -44,6 +44,6 @@ Scanned inbox for read emails older than {threshold} days.
 
 **6. On approval, execute:**
 
-- **Archive:** Call `email_move` with `targetFolder: "archive"` for each `conversationId`
-- **Delete:** Call `email_move` with `targetFolder: "deleteditems"` for each `conversationId`
+- **Archive:** Use the **email** provider's move operation to archive each email
+- **Delete:** Use the **email** provider's move operation to delete each email
 - Report totals after execution

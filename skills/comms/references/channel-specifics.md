@@ -60,16 +60,11 @@ Detailed formatting, convention, and feature guidance for each communication cha
 - **Bold:** Sparingly, for key decisions or action items
 - **Links:** Use descriptive text, not raw URLs
 
-### Future: Sending via MCP
-When `aws-outlook-mcp` server is available:
+### Future: Sending via Provider
+When the **email** provider supports sending:
 - Compose draft in `## Response` section
 - User approves
-- Skill calls `send_email` tool with:
-  - `to`: recipient(s)
-  - `subject`: from frontmatter
-  - `body`: from `## Response`
-  - `cc`: if specified
-  - `attachments`: if referenced
+- Skill uses the **email** provider's send operation with recipient(s), subject, body, and optional cc/attachments
 
 ---
 
@@ -117,14 +112,11 @@ Let me know if you want to review the runbook first.
 - **Threads:** Keep related discussion together. Reference parent message.
 - **DMs:** More direct, skip even more formality.
 
-### Future: Posting via MCP
-When Slack MCP server is available:
+### Future: Posting via Provider
+When a **messaging** provider is configured:
 - Compose draft in `## Response` section
 - User approves
-- Skill calls Slack posting tool with:
-  - `channel`: from frontmatter or user specifies
-  - `message`: from `## Response`
-  - `thread_ts`: if replying in thread
+- Skill uses the **messaging** provider's post operation with channel, message content, and thread reference if applicable
 
 ---
 
@@ -224,23 +216,22 @@ When Slack MCP server is available:
 
 ### Planned Channel Support
 
-**Email (aws-outlook-mcp)**:
+**Email (via email provider)**:
 - Send email with subject, body, recipients
 - Reply to thread
 - Forward with context
-- Schedule send (if supported)
+- Schedule send (if supported by provider)
 
-**Slack (future MCP server)**:
-- Post to channel
+**Messaging (via messaging provider)**:
+- Post to channel (Slack, Teams)
 - Reply in thread
 - Direct message
-- Edit posted message (if within time window)
+- Edit posted message (if supported by provider)
 
 **Not yet planned**:
 - LinkedIn posting
 - SMS sending
 - Twitter/X posting
-- Teams posting (may use similar to Slack)
 
 ### Workflow for Future Sending
 
@@ -254,4 +245,4 @@ When Slack MCP server is available:
    - Updates frontmatter `status: sent`
    - Includes sent timestamp and any message IDs
 
-Until MCP servers are integrated, all sending remains manual (copy/paste).
+Until providers with send capability are configured, all sending remains manual (copy/paste).

@@ -15,7 +15,7 @@ If ambiguous, ask user to clarify.
 
 **2. Read full thread**
 
-Call `email_read` with `conversationId` and `format: "markdown"` to get complete conversation. Note the `itemId` and `itemChangeKey` of most recent message — these are needed to send reply.
+Using the **email** provider's read operation, retrieve the complete conversation in markdown format. Note the identifiers needed for reply (per the provider's instructions).
 
 **3. Gather user intent**
 
@@ -55,6 +55,6 @@ Write response that:
 
 **6. On approval:**
 
-- **Send:** Call `email_reply` with `itemId`, `itemChangeKey`, `body` (HTML formatted), and `replyAll` as appropriate
+- **Send:** Use the **email** provider's reply operation with the message identifiers, body (HTML formatted), and reply-all flag as appropriate
 - **Edit:** Revise per user feedback, present again
 - **Cancel:** Discard, no action taken

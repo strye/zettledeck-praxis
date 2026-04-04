@@ -10,7 +10,7 @@ Read `{rp-path}/ruthless-priorities.md` and extract active RP titles and linked 
 
 **2. Fetch unread emails**
 
-Call `email_inbox` with `unreadOnly: true`. If no unread emails, report "Inbox is clear — nothing to triage" and stop.
+Using the **email** provider's list inbox operation, retrieve unread emails. If no unread emails, report "Inbox is clear — nothing to triage" and stop.
 
 **3. Handle large inboxes**
 
@@ -18,7 +18,7 @@ If more than 20 unread emails, process in batches of 20. After presenting each b
 
 **4. Read full threads where needed**
 
-For emails where inbox preview is truncated or unclear, call `email_read` with `conversationId` to get full thread.
+For emails where inbox preview is truncated or unclear, use the **email** provider's read operation to get full thread.
 
 **5. Classify each email**
 
@@ -52,7 +52,7 @@ Generate one-to-two sentence summary capturing key point and any action implied.
 
 **2. Thread summarization**
 
-For emails with 3+ messages in thread (determined by reading full conversation via `email_read`), generate thread summary per format in Shared Context.
+For emails with 3+ messages in thread (determined by reading full conversation via the **email** provider), generate thread summary per format in Shared Context.
 
 **3. Extract actions from 🔴 emails**
 
@@ -125,11 +125,11 @@ Write approved waiting-for items under `## Waiting For`:
 
 **Archive FYI emails**
 
-Call `email_move` with `targetFolder: "archive"` for each approved FYI email's `conversationId`.
+Use the **email** provider's move operation to archive each approved FYI email.
 
 **Mark triaged emails as read**
 
-Call `email_read` with `markAs: "read"` for all triaged emails.
+Use the **email** provider's mark-as-read operation for all triaged emails.
 
 ## Priority Assignment for Extracted Tasks
 

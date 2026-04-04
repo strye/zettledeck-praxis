@@ -13,7 +13,7 @@ Call this mode when the user requests:
 
 ## Requirements
 
-**MCP Server**: `aws-outlook-mcp` (if refreshing daily files)
+**Providers**: **calendar** provider (if refreshing daily files) → `.zettledeck/providers/{calendar-provider}.md`
 
 **Tools needed**: Read, Write, Glob
 
@@ -449,7 +449,7 @@ Remember to prepare Q2 planning materials before end of month.
 
 ## Error Handling
 
-**If aws-outlook-mcp not available** (and not in quick mode): Inform user that MCP server must be configured for daily file refresh.
+**If calendar provider not available** (and not in quick mode): Inform user that a calendar provider must be configured for daily file refresh.
 
 **If week identifier invalid**: Ask user to provide ISO week (`2026-W10`) or date (`MM-DD-YYYY`) format.
 

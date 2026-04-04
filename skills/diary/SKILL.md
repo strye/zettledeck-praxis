@@ -11,7 +11,7 @@ Unified skill for daily diary management. Routes to mode-specific logic based on
 
 | Mode | Description | Resource |
 |------|-------------|----------|
-| `daily` | Generate or update daily diary file from Outlook calendar | `resources/daily.md` |
+| `daily` | Generate or update daily diary file from calendar | `resources/daily.md` |
 | `weekly` | Consolidate daily files into week-at-a-glance dashboard | `resources/weekly.md` |
 | `meeting-summary` | Import meeting summary emails into diary Auto Summary sections | `resources/meeting-summary.md` |
 | `close` | End-of-day ritual for processing and filing daily notes | `resources/close.md` |
@@ -20,7 +20,7 @@ Unified skill for daily diary management. Routes to mode-specific logic based on
 ## Invocation
 
 ```
-/diary daily                      → today's diary from Outlook calendar
+/diary daily                      → today's diary from calendar
 /diary daily 03-22-2026           → diary for specific date
 /diary weekly                     → this week's view
 /diary weekly 2026-W12            → specific ISO week
@@ -35,7 +35,10 @@ Unified skill for daily diary management. Routes to mode-specific logic based on
 
 ## Shared Dependencies
 
-**MCP Server**: `aws-outlook-mcp` — calendar and email access (required by `daily`, `weekly`, `meeting-summary`)
+**Providers** (required by `daily`, `weekly`, `meeting-summary`):
+- **calendar** — calendar access → `.zettledeck/providers/{calendar-provider}.md`
+- **email** — email search and read → `.zettledeck/providers/{email-provider}.md`
+- **contacts** — attendee name resolution → `.zettledeck/providers/{contacts-provider}.md`
 
 **Reference Skills**:
 - `markdown` — task format rules (emoji signifiers, attribution, field order)
@@ -63,7 +66,7 @@ If user says `/diary` or `/diary help`, respond with:
 ```
 Diary — Available Modes
 
-  daily              Generate/update daily diary from Outlook calendar
+  daily              Generate/update daily diary from calendar
   weekly             Consolidate week-at-a-glance from daily files
   meeting-summary    Import meeting summary emails into diary
   close              End-of-day processing and filing ritual

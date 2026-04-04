@@ -1,6 +1,6 @@
 # Daily Diary — Meeting Log
 
-Generate or update a daily diary file with non-all-day meetings from the user's Outlook calendar.
+Generate or update a daily diary file with non-all-day meetings from the user's calendar.
 
 ## Input
 
@@ -14,7 +14,7 @@ When the user passes `help`, respond with:
 ```
 Daily Diary — Quick Reference
 
-Generates a daily diary file from your Outlook calendar.
+Generates a daily diary file from your calendar.
 
 Usage:
   /diary daily                → today's diary
@@ -22,7 +22,7 @@ Usage:
   /diary daily help           → this message
 
 What it does:
-  1. Fetches non-all-day meetings from Outlook
+  1. Fetches non-all-day meetings from your calendar
   2. Creates/updates {diary-path}/{YYYY}/{Month}/{YYYY}-{MM}-{DD}.md
   3. Populates meeting blocks with attendees, tags, and placeholders for notes
 
@@ -36,7 +36,9 @@ Then stop — do not proceed to the steps below.
 
 ## Requirements
 
-**MCP Server**: `aws-outlook-mcp` with calendar and contacts access
+**Providers**:
+- **calendar** — list and read meetings → `.zettledeck/providers/{calendar-provider}.md`
+- **contacts** — attendee name resolution → `.zettledeck/providers/{contacts-provider}.md`
 
 **Tools needed**: Read, Write, Glob
 
@@ -52,13 +54,13 @@ Then stop — do not proceed to the steps below.
    - `{WW}` — two-digit ISO week number (e.g. `10`)
    - `{timestamp}` — compact timestamp in `YYYYMMDDHHmmss` format using current time
 
-2. **Fetch meetings.** Use the `aws-outlook-mcp` server's `calendar_view` tool to retrieve all meetings for the target date. Use `view: "day"` and `start_date` in `MM-DD-YYYY` format.
+2. **Fetch meetings.** Using the **calendar** provider, retrieve all meetings for the target date. Follow the provider's instructions for listing meetings by date.
 
 3. **Filter meetings.** Exclude any meeting where:
    - `isAllDay` is `true` (all-day meetings)
    - The meeting has a category tag of `"hide"` (case-insensitive). Check the meeting's `categories` array for this value.
 
-4. **Fetch meeting details.** For each non-all-day meeting, use the `aws-outlook-mcp` server's `calendar_meeting` tool with `operation: "read"` and the meeting's `meetingId` and `meetingChangeKey` to retrieve full details including attendees.
+4. **Fetch meeting details.** For each non-all-day meeting, use the **calendar** provider's read meeting details operation to retrieve full details including attendees. Follow the provider's instructions for required parameters.
 
 5. **Check for existing diary file.** Look for a file at:
    ```
@@ -131,7 +133,7 @@ title: "Daily Diary — {MMM} {DD}, {YYYY}"
 - **Time**: Display in `h:mm AM` – `h:mm PM` format, derived from the meeting start/end times.
 - **Response**: Use the `response` field from the calendar data (e.g. `Accept`, `Tentative`, `Organizer`, `NoResponseReceived`). Display `NoResponseReceived` as `No Response`.
 - **Status**: Use the `status` field (e.g. `Busy`, `Free`, `Tentative`).
-- **Attendees**: List all attendees from the meeting details (required + optional). To resolve display names, use the `email_contacts` tool to look up each attendee by their email address or login prefix. Use the contact's `name` field (e.g. `Franklin, Tim`) as the display name. If the contact lookup fails or returns no results, fall back to capitalizing the email local part (e.g. `hnazlee@amazon.com` -> `Hnazlee`). For internal attendees (matching the corporate email domain), format as a markdown link to the corporate directory: `[{Name}]({corporate-directory-url}/{login}) ({email})` where `{login}` is the email local part. For external attendees, format without a link: `{Name} ({email})`. If no attendees are available, write `- None listed`.
+- **Attendees**: List all attendees from the meeting details (required + optional). To resolve display names, use the **contacts** provider to look up each attendee by their email address. Follow the provider's instructions for lookup and fallback behavior. For internal attendees (matching the corporate email domain), format as a markdown link to the corporate directory: `[{Name}]({corporate-directory-url}/{login}) ({email})` where `{login}` is the email local part. For external attendees, format without a link: `{Name} ({email})`. If no attendees are available, write `- None listed`.
 - **Tags**: Display the meeting's categories as a comma-delimited list, each prefixed with `#`. Exclude the `hide` tag. Convert each tag to PascalCase with no spaces for Obsidian hashtag compatibility (e.g. `Acct Team` -> `#AcctTeam`, `!Customer` -> `#!Customer`). Omit this line entirely if the meeting has no categories (or only `hide`).
 - **Meeting Notes**: Leave blank — this is for the user to fill in manually.
 - **Auto Summary**: Leave blank — this is a placeholder for future automated meeting summary imports.

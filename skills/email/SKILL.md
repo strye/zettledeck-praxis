@@ -44,7 +44,7 @@ Load the appropriate resource file based on detected mode, then follow its workf
 
 ## Requirements
 
-**MCP Server**: `aws-outlook-mcp` with email access
+**Providers**: **email** — email access → `.zettledeck/providers/{email-provider}.md`
 
 **Tools needed**: Read, Write
 
