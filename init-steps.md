@@ -46,8 +46,6 @@ After walking through each section below, write the final config file with all r
 ### How to apply
 
 1. Write the user's choice to `diaryPath` in `.zettledeck/zettledeck-praxis/config.json`
-2. Replace `{diary-path}` in `skills/diary/SKILL.md` and all resource files under `skills/diary/resources/`
-3. Also replace in any nexus skills that share this placeholder (`skills/insight/`, `skills/reflection/`, `skills/ideas/`)
 
 ---
 
@@ -66,7 +64,6 @@ After walking through each section below, write the final config file with all r
 ### How to apply
 
 1. Write the user's choice to `actionsPath` in `.zettledeck/zettledeck-praxis/config.json`
-2. Replace `{actions-path}` in diary, email, and insight skill files
 
 ---
 
@@ -103,8 +100,7 @@ After walking through each section below, write the final config file with all r
 ### How to apply
 
 1. Write the user's choice to `rpPath` in `.zettledeck/zettledeck-praxis/config.json`
-2. Replace `{rp-path}` in plan, email, insight, and ideas skill files
-3. The full file path will be `{rpPath}/ruthless-priorities.md`
+2. The full file path will be `{rpPath}/ruthless-priorities.md`
 
 ---
 
@@ -123,7 +119,6 @@ After walking through each section below, write the final config file with all r
 ### How to apply
 
 1. Write the user's choice to `commsPath` in `.zettledeck/zettledeck-praxis/config.json`
-2. Replace `{comms-path}` in `skills/comms/SKILL.md`
 
 ---
 
@@ -160,7 +155,4 @@ For each capability, scan `.zettledeck/providers/` for files with matching `capa
      "contacts": "aws-outlook-contacts"
    }
    ```
-2. Replace `{calendar-provider}` in diary skill files with the selected calendar provider name
-3. Replace `{email-provider}` in diary and email skill files with the selected email provider name
-4. Replace `{contacts-provider}` in diary skill files with the selected contacts provider name
-5. If user has no providers for a capability, note which skills will run in degraded mode
+2. If user has no providers for a capability, note which skills will run in degraded mode
