@@ -1,11 +1,11 @@
 ---
 name: plan
-description: Planning and priority management — reshape the week around active intellectual threads, review ruthless priorities, run quarterly RP reviews. Three modes covering weekly restructuring, weekly RP review, and quarterly strategic review.
+description: Planning and priority management — reshape the week around active intellectual threads, review ruthless priorities, run quarterly RP reviews, and detect alignment gaps between stated priorities and actual behavior. Four modes covering weekly restructuring, weekly RP review, quarterly strategic review, and 30-60 day alignment analysis.
 ---
 
 # Plan — Reshape, Review, Prioritize
 
-Planning and priority management skill. Three modes covering weekly restructuring, RP progress review, and quarterly strategic review.
+Planning and priority management skill. Four modes covering weekly restructuring, RP progress review, quarterly strategic review, and alignment analysis.
 
 ## Invocation
 
@@ -13,6 +13,7 @@ Planning and priority management skill. Three modes covering weekly restructurin
 /plan reshape-week    → Restructure the week around active intellectual threads
 /plan review          → Weekly RP progress check and stall detection
 /plan quarterly       → Quarterly RP review and refresh
+/plan align           → Compare stated priorities against actual behavior (30-60 days)
 ```
 
 ## Mode Detection
@@ -22,6 +23,7 @@ Planning and priority management skill. Three modes covering weekly restructurin
 | `reshape-week` | User says "reshape", "restructure", "plan the week", or `/plan reshape-week` |
 | `review` | User says "review priorities", "RP check", "weekly review", or `/plan review` |
 | `quarterly` | User says "quarterly review", "RP refresh", or `/plan quarterly` |
+| `align` | User says "align", "check alignment", "priorities vs behavior", or `/plan align` |
 
 If ambiguous, ask which mode.
 
@@ -170,3 +172,13 @@ Full quarterly RP review and refresh. Triggered when the `next-review` date in t
 - Do not create or modify Ruthless Priorities without the user's explicit direction
 - Do not demote an RP to Parked or Rejected without the user's confirmation
 - Do not add more than 3 active RPs
+
+---
+
+## Mode: align
+
+**Full instructions:** Load `resources/align.md`
+
+Compare stated intentions against actual behavior to identify gaps and avoidance patterns. 30-60 day analysis. Compassionate honesty — the goal is awareness, not guilt.
+
+Complement to `review` (weekly) and `quarterly` — where those modes assess RP progress, `align` surfaces the behavioral patterns underneath: what you said mattered vs. what actually received attention.

@@ -1,6 +1,6 @@
 ---
 name: diary
-description: Daily diary management — create daily/weekly views, import meeting summaries, close-of-day processing, and compile weekly learnings for team communications
+description: Daily diary management — create daily/weekly views, import meeting summaries, close-of-day processing, compile weekly learnings, and promote raw ideas from diary entries into permanent vault notes
 ---
 
 # Diary
@@ -16,6 +16,7 @@ Unified skill for daily diary management. Routes to mode-specific logic based on
 | `meeting-summary` | Import meeting summary emails into diary Auto Summary sections | `resources/meeting-summary.md` |
 | `close` | End-of-day ritual for processing and filing daily notes | `resources/close.md` |
 | `compile` | Synthesize week's work into structured team communications | `resources/compile.md` |
+| `promote` | Graduate raw ideas from diary entries into permanent vault notes | `resources/promote.md` |
 
 ## Invocation
 
@@ -30,6 +31,7 @@ Unified skill for daily diary management. Routes to mode-specific logic based on
 /diary meeting-summary 03-22-2026 → import for specific date
 /diary close                      → end-of-day processing ritual
 /diary compile                    → synthesize weekly learnings for team
+/diary promote                    → graduate diary ideas into permanent vault notes
 /diary help                       → show this mode table
 ```
 
@@ -71,6 +73,7 @@ Diary — Available Modes
   meeting-summary    Import meeting summary emails into diary
   close              End-of-day processing and filing ritual
   compile            Synthesize weekly learnings for team communications
+  promote            Graduate diary ideas into permanent vault notes
 
 Usage:
   /diary <mode> [arguments]
@@ -83,6 +86,7 @@ Examples:
   /diary meeting-summary
   /diary close
   /diary compile
+  /diary promote
 
 Run /diary <mode> help for mode-specific help.
 ```
